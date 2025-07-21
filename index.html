@@ -3,124 +3,31 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Scroll Vertical con Música</title>
-  <style>
-    body {
-      margin: 0;
-      background: #000;
-      overflow-x: hidden;
-      font-family: sans-serif;
-    }
-
-    .container {
-      display: flex;
-      flex-direction: column;
-      scroll-snap-type: y mandatory;
-      overflow-y: scroll;
-      height: 100vh;
-    }
-
-    .section {
-      scroll-snap-align: start;
-      height: 100vh;
-      position: relative;
-    }
-
-    .section img {
-      width: 100%;
-      height: 100vh;
-      object-fit: cover;
-      display: block;
-    }
-
-    /* Ocultar scroll */
-    .container::-webkit-scrollbar {
-      display: none;
-    }
-    .container {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
-
-    /* 🎵 Botón flotante */
-    #audioControl {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 1000;
-      background-color: rgba(255, 255, 255, 0.8);
-      border: none;
-      border-radius: 50px;
-      padding: 10px 16px;
-      font-size: 14px;
-      cursor: pointer;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
-    }
-
-    #audioControl:hover {
-      background-color: #eee;
-    }
-  </style>
+  <title>Invitación Cumpleaños</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- 🎵 Música de fondo -->
-  <audio id="bgMusic" autoplay loop>
-    <source src="musica.mp3" type="audio/mpeg">
-    Tu navegador no soporta audio HTML5.
+  <!-- Audio -->
+  <audio id="bg-music" autoplay loop>
+    <source src="music.mp3" type="audio/mp3" />
+    Tu navegador no soporta audio.
   </audio>
+  <button id="pause-btn">⏸️ Pausar música</button>
 
-  <!-- 🎵 Botón de control de música -->
-  <button id="audioControl">⏸️ Pausar</button>
+  <!-- Secciones -->
+  <section class="panel" style="background-image: url('img/imagen1.jpg');"></section>
+  <section class="panel" style="background-image: url('img/imagen2.jpg');"></section>
 
-  <!-- 📜 Contenedor de imágenes en scroll vertical -->
-  <div class="container">
-    <div class="section">
-      <img src="pagina1.jpg" alt="Página 1" />
-    </div>
-    <div class="section">
-      <img src="pagina2.jpg" alt="Página 2" />
-    </div>
-    <div class="section">
-      <a href="https://maps.google.com" target="_blank">
-        <img src="pagina3.jpg" alt="Mapa" />
-      </a>
-    </div>
-    <div class="section">
-      <a href="https://wa.me/524921749044" target="_blank">
-        <img src="pagina4.jpg" alt="WhatsApp" />
-      </a>
-    </div>
-  </div>
+  <section class="panel" style="background-image: url('img/imagen3.jpg');">
+    <a href="https://www.google.com.mx/maps/place/Tierra+Adentro+Vin%C3%ADcola/@23.1917286,-113.2685212,5z/data=!4m7!3m6!1s0x868231e0f51c6cb3:0x6971c13d36dfa0bc" target="_blank" class="btn">📍 Ver Mapa</a>
+  </section>
 
-  <!-- 🎵 Script para controlar la música -->
-  <script>
-    const bgMusic = document.getElementById("bgMusic");
-    const audioControl = document.getElementById("audioControl");
+  <section class="panel" style="background-image: url('img/imagen4.jpg');">
+    <a href="https://wa.me/524921749044" target="_blank" class="btn">📲 Confirmar por WhatsApp</a>
+  </section>
 
-    // Cambiar el texto del botón según estado
-    audioControl.addEventListener("click", () => {
-      if (bgMusic.paused) {
-        bgMusic.play();
-        audioControl.textContent = "⏸️ Pausar";
-      } else {
-        bgMusic.pause();
-        audioControl.textContent = "▶️ Reanudar";
-      }
-    });
-
-    // Autoplay fallback por políticas del navegador
-    document.addEventListener("click", () => {
-      if (bgMusic.paused) {
-        bgMusic.play().catch(() => {});
-      }
-    }, { once: true });
-  </script>
-
+  <script src="script.js"></script>
 </body>
 </html>
-
-
-
-
 

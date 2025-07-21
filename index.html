@@ -19,32 +19,95 @@
       margin: 10px 0;
       border-radius: 10px;
     }
-    button {
+    button#btnMusica {
       position: fixed;
-      bottom: 20px;
-      right: 20px;
+      top: 10px;
+      right: 10px;
       background: white;
       border: none;
       padding: 10px 15px;
       border-radius: 20px;
       font-size: 16px;
       box-shadow: 0 0 10px #aaa;
+      cursor: pointer;
+      z-index: 100;
+    }
+    .boton-flotante {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 6px 12px;
+      border-radius: 5px;
+      font-weight: bold;
+      text-decoration: none;
+      color: #000;
+      background: #fff;
+      box-shadow: 0 0 8px #aaa;
+      font-size: 14px;
+    }
+    .boton-whatsapp {
+      background: #25D366;
+      color: white !important;
+    }
+    .contenedor-img {
+      position: relative;
+      max-width: 600px;
+      margin: 10px 0;
+      width: 100%;
     }
   </style>
 </head>
 <body>
 
-  <img src="pagina1.jpg" alt="Página 1" />
-  <img src="pagina2.jpg" alt="Página 2" />
-  <img src="pagina3.jpg" alt="Página 3" />
-  <img src="pagina4.jpg" alt="Página 4" />
+  <!-- Botón Reproducir/Pausar Música -->
+  <button id="btnMusica">▶️ Reproducir música</button>
 
+  <!-- Página 1 -->
+  <img src="pagina1.jpg" alt="Página 1" />
+
+  <!-- Página 2 -->
+  <img src="pagina2.jpg" alt="Página 2" />
+
+  <!-- Página 3 con botón Mapa -->
+  <div class="contenedor-img">
+    <img src="pagina3.jpg" alt="Mapa" />
+    <a href="https://www.google.com.mx/maps/place/Tierra+Adentro+Vinícola/@23.1917286,-113.2685212,5z/data=!4m7!3m6!1s0x868231e0f51c6cb3:0x6971c13d36dfa0bc!8m2!3d22.7148439!4d-102.3268219!15sCiF2acOxZWRvcyB0aWVycmEgYWRlbnRybyB6YWNhdGVjYXNaIyIhdmnDsWVkb3MgdGllcnJhIGFkZW50cm8gemFjYXRlY2FzkgEKd2luZV9zdG9yZaoBdgoNL2cvMTF5YjFsbDBmdBABKhsiF3Zpw7FlZG9zIHRpZXJyYSBhZGVudHJvKA4yHxABIhvwgKXOBrqQVh-oIQpl1f4H985Fl3JQI-5kviEyJRACIiF2acOxZWRvcyB0aWVycmEgYWRlbnRybyB6YWNhdGVjYXPgAQA!16s%2Fg%2F11rjw2wnv4?entry=tts&g_ep=EgoyMDI1MDcxNS4xIPu8ASoASAFQAw%3D%3D&skid=9503b386-ee64-49b9-a9c3-185669200708" 
+       target="_blank" class="boton-flotante">
+      Ver Mapa
+    </a>
+  </div>
+
+  <!-- Página 4 con botón WhatsApp -->
+  <div class="contenedor-img">
+    <img src="pagina4.jpg" alt="Confirmar WhatsApp" />
+    <a href="http://wa.me/524921749044" 
+       target="_blank" class="boton-flotante boton-whatsapp">
+      Confirmar Asistencia
+    </a>
+  </div>
+
+  <!-- Audio con control JS -->
   <audio id="musica" loop>
-    <source src="musica.mp3" type="audio/mpeg">
+    <source src="musica.mp3" type="audio/mpeg" />
     Tu navegador no soporta audio HTML5.
   </audio>
 
-  <button onclick="document.getElementById('musica').play()">🎵 Reproducir música</button>
+  <script>
+    const btn = document.getElementById('btnMusica');
+    const audio = document.getElementById('musica');
+    let sonando = false;
+
+    btn.addEventListener('click', () => {
+      if (!sonando) {
+        audio.play();
+        btn.textContent = '⏸️ Pausar música';
+      } else {
+        audio.pause();
+        btn.textContent = '▶️ Reproducir música';
+      }
+      sonando = !sonando;
+    });
+  </script>
 
 </body>
 </html>

@@ -47,7 +47,6 @@
       z-index: 1000;
     }
 
-    /* Oculta scroll */
     .container::-webkit-scrollbar {
       display: none;
     }
@@ -60,13 +59,13 @@
 <body>
 
   <!-- 🎵 Audio de fondo -->
-  <audio id="background-music" autoplay loop>
+  <audio id="background-music" loop>
     <source src="musica.mp3" type="audio/mpeg">
     Tu navegador no soporta audio HTML5.
   </audio>
 
   <!-- 🎶 Botón de música -->
-  <button id="music-btn">⏸️</button>
+  <button id="music-btn">▶️</button>
 
   <!-- 📜 Contenedor vertical -->
   <div class="container">
@@ -92,19 +91,26 @@
     const music = document.getElementById("background-music");
     const btn = document.getElementById("music-btn");
 
+    let hasStarted = false;
+
     btn.addEventListener("click", () => {
-      if (music.paused) {
+      if (!hasStarted) {
         music.play();
-        btn.textContent = "⏸️"; // Pausar
+        btn.textContent = "⏸️";
+        hasStarted = true;
+      } else if (music.paused) {
+        music.play();
+        btn.textContent = "⏸️";
       } else {
         music.pause();
-        btn.textContent = "▶️"; // Reproducir
+        btn.textContent = "▶️";
       }
     });
   </script>
 
 </body>
 </html>
+
 
 
 

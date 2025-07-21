@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Invitación Especial</title>
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    img {
+      width: 100%;
+      max-width: 600px;
+      margin: 10px 0;
+      border-radius: 10px;
+    }
+    button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 20px;
+      font-size: 16px;
+      box-shadow: 0 0 10px #aaa;
+    }
+  </style>
+</head>
+<body>
+
+  <img src="pagina1.jpg" alt="Página 1" />
+  <img src="pagina2.jpg" alt="Página 2" />
+  <img src="pagina3.jpg" alt="Página 3" />
+  <img src="pagina4.jpg" alt="Página 4" />
+
+  <audio id="musica" loop>
+    <source src="musica.mp3" type="audio/mpeg">
+    Tu navegador no soporta audio HTML5.
+  </audio>
+
+  <button onclick="document.getElementById('musica').play()">🎵 Reproducir música</button>
+
+</body>
+</html>

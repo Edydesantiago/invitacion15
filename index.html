@@ -32,7 +32,22 @@
       display: block;
     }
 
-    /* Oculta scroll en algunos navegadores */
+    /* Botón de música */
+    #music-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: rgba(255, 255, 255, 0.7);
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 20px;
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    /* Oculta scroll */
     .container::-webkit-scrollbar {
       display: none;
     }
@@ -45,10 +60,13 @@
 <body>
 
   <!-- 🎵 Audio de fondo -->
-  <audio autoplay loop>
+  <audio id="background-music" autoplay loop>
     <source src="musica.mp3" type="audio/mpeg">
     Tu navegador no soporta audio HTML5.
   </audio>
+
+  <!-- 🎶 Botón de música -->
+  <button id="music-btn">⏸️</button>
 
   <!-- 📜 Contenedor vertical -->
   <div class="container">
@@ -59,7 +77,7 @@
       <img src="pagina2.jpg" alt="Página 2" />
     </div>
     <div class="section">
-      <a href="https://maps.google.com" target="_blank">
+      <a href="https://maps.app.goo.gl/zR1JMv2XuidMMJn37" target="_blank">
         <img src="pagina3.jpg" alt="Mapa" />
       </a>
     </div>
@@ -70,7 +88,23 @@
     </div>
   </div>
 
+  <script>
+    const music = document.getElementById("background-music");
+    const btn = document.getElementById("music-btn");
+
+    btn.addEventListener("click", () => {
+      if (music.paused) {
+        music.play();
+        btn.textContent = "⏸️"; // Pausar
+      } else {
+        music.pause();
+        btn.textContent = "▶️"; // Reproducir
+      }
+    });
+  </script>
+
 </body>
 </html>
+
 
 

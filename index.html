@@ -2,116 +2,79 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Invitación Especial</title>
+  <title>Slider de Imágenes</title>
   <style>
-    body {
+    * {
+      box-sizing: border-box;
       margin: 0;
-      background-color: #000;
-      color: #fff;
+      padding: 0;
+    }
+
+    body {
       font-family: sans-serif;
-      text-align: center;
+      background: #000;
     }
-    .pagina {
+
+    .slider {
+      position: relative;
+      max-width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .slide {
       display: none;
+      height: 100vh;
     }
-    .pagina.active {
+
+    .slide img {
+      width: 100%;
+      height: 100vh;
+      object-fit: cover;
+    }
+
+    .active {
       display: block;
-    }
-    .boton {
-      padding: 10px 20px;
-      background-color: #ffffff88;
-      border: none;
-      border-radius: 10px;
-      margin-top: 10px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-    .navegacion {
-      margin-top: 20px;
-    }
-    img {
-      width: 90%;
-      max-width: 600px;
-      margin-top: 10px;
     }
   </style>
 </head>
 <body>
 
-  <!-- Audio -->
-  <audio id="musica" autoplay loop>
-    <source src="musica.mp3" type="audio/mp3">
-    Tu navegador no soporta audio.
-  </audio>
-
-  <!-- Botón de audio -->
-  <button class="boton" onclick="toggleAudio()" id="audioBtn">⏸ Pausar música</button>
-
-  <!-- Páginas -->
-  <div id="pagina1" class="pagina active">
-    <img src="pagina1.jpg" alt="Página 1">
-  </div>
-  <div id="pagina2" class="pagina">
-    <img src="pagina2.jpg" alt="Página 2">
-  </div>
-  <div id="pagina3" class="pagina">
-    <img src="pagina3.jpg" alt="Página 3">
-    <br>
-    <a href="https://www.google.com.mx/maps/place/Tierra+Adentro+Vinícola/" target="_blank">
-      <button class="boton">📍 Ver ubicación</button>
-    </a>
-  </div>
-  <div id="pagina4" class="pagina">
-    <img src="pagina4.jpg" alt="Página 4">
-    <br>
-    <a href="https://wa.me/524921749044" target="_blank">
-      <button class="boton">📲 Confirmar por WhatsApp</button>
-    </a>
-  </div>
-
-  <!-- Navegación -->
-  <div class="navegacion">
-    <button class="boton" onclick="anterior()">⬅ Anterior</button>
-    <button class="boton" onclick="siguiente()">Siguiente ➡</button>
+  <div class="slider">
+    <div class="slide active">
+      <img src="pagina1.jpg" alt="Página 1">
+    </div>
+    <div class="slide">
+      <img src="pagina2.jpg" alt="Página 2">
+    </div>
+    <div class="slide">
+      <a href="https://maps.google.com" target="_blank">
+        <img src="pagina3.jpg" alt="Mapa">
+      </a>
+    </div>
+    <div class="slide">
+      <a href="https://wa.me/524921749044" target="_blank">
+        <img src="pagina4.jpg" alt="Confirmar WhatsApp">
+      </a>
+    </div>
   </div>
 
   <script>
-    const paginas = document.querySelectorAll('.pagina');
-    let paginaActual = 0;
-    const audio = document.getElementById('musica');
-    const audioBtn = document.getElementById('audioBtn');
+    let slides = document.querySelectorAll('.slide');
+    let current = 0;
 
-    function mostrarPagina(index) {
-      paginas.forEach((pagina, i) => {
-        pagina.classList.toggle('active', i === index);
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
       });
     }
 
-    function siguiente() {
-      if (paginaActual < paginas.length - 1) {
-        paginaActual++;
-        mostrarPagina(paginaActual);
-      }
-    }
-
-    function anterior() {
-      if (paginaActual > 0) {
-        paginaActual--;
-        mostrarPagina(paginaActual);
-      }
-    }
-
-    function toggleAudio() {
-      if (audio.paused) {
-        audio.play();
-        audioBtn.textContent = "⏸ Pausar música";
-      } else {
-        audio.pause();
-        audioBtn.textContent = "▶ Reproducir música";
-      }
-    }
+    setInterval(() => {
+      current = (current + 1) % slides.length;
+      showSlide(current);
+    }, 4000); // Cambia cada 4 segundos
   </script>
 
 </body>
 </html>
+

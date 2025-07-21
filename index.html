@@ -3,31 +3,74 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Invitación Cumpleaños</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Scroll Vertical con Música</title>
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      overflow-x: hidden;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      scroll-snap-type: y mandatory;
+      overflow-y: scroll;
+      height: 100vh;
+    }
+
+    .section {
+      scroll-snap-align: start;
+      height: 100vh;
+      position: relative;
+    }
+
+    .section img {
+      width: 100%;
+      height: 100vh;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Oculta scroll en algunos navegadores */
+    .container::-webkit-scrollbar {
+      display: none;
+    }
+    .container {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Audio -->
-  <audio id="bg-music" autoplay loop>
-    <source src="music.mp3" type="audio/mp3" />
-    Tu navegador no soporta audio.
+  <!-- 🎵 Audio de fondo -->
+  <audio autoplay loop>
+    <source src="musica.mp3" type="audio/mpeg">
+    Tu navegador no soporta audio HTML5.
   </audio>
-  <button id="pause-btn">⏸️ Pausar música</button>
 
-  <!-- Secciones -->
-  <section class="panel" style="background-image: url('img/imagen1.jpg');"></section>
-  <section class="panel" style="background-image: url('img/imagen2.jpg');"></section>
+  <!-- 📜 Contenedor vertical -->
+  <div class="container">
+    <div class="section">
+      <img src="pagina1.jpg" alt="Página 1" />
+    </div>
+    <div class="section">
+      <img src="pagina2.jpg" alt="Página 2" />
+    </div>
+    <div class="section">
+      <a href="https://maps.google.com" target="_blank">
+        <img src="pagina3.jpg" alt="Mapa" />
+      </a>
+    </div>
+    <div class="section">
+      <a href="https://wa.me/524921749044" target="_blank">
+        <img src="pagina4.jpg" alt="WhatsApp" />
+      </a>
+    </div>
+  </div>
 
-  <section class="panel" style="background-image: url('img/imagen3.jpg');">
-    <a href="https://www.google.com.mx/maps/place/Tierra+Adentro+Vin%C3%ADcola/@23.1917286,-113.2685212,5z/data=!4m7!3m6!1s0x868231e0f51c6cb3:0x6971c13d36dfa0bc" target="_blank" class="btn">📍 Ver Mapa</a>
-  </section>
-
-  <section class="panel" style="background-image: url('img/imagen4.jpg');">
-    <a href="https://wa.me/524921749044" target="_blank" class="btn">📲 Confirmar por WhatsApp</a>
-  </section>
-
-  <script src="script.js"></script>
 </body>
 </html>
+
 

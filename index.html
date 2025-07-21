@@ -2,46 +2,50 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Slider de Imágenes</title>
+  <title>Slider Scroll</title>
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
     body {
-      font-family: sans-serif;
+      margin: 0;
       background: #000;
+      overflow-x: hidden;
     }
 
-    .slider {
-      position: relative;
-      max-width: 100%;
+    .carousel {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      width: 100vw;
       height: 100vh;
-      overflow: hidden;
     }
 
     .slide {
-      display: none;
-      height: 100vh;
+      flex: 0 0 100%;
+      scroll-snap-align: start;
+      position: relative;
     }
 
     .slide img {
       width: 100%;
       height: 100vh;
       object-fit: cover;
+      display: block;
     }
 
-    .active {
-      display: block;
+    /* Opcional: Oculta scroll en desktop */
+    .carousel::-webkit-scrollbar {
+      display: none;
+    }
+    .carousel {
+      -ms-overflow-style: none;  /* IE y Edge */
+      scrollbar-width: none;     /* Firefox */
     }
   </style>
 </head>
 <body>
 
-  <div class="slider">
-    <div class="slide active">
+  <div class="carousel">
+    <div class="slide">
       <img src="pagina1.jpg" alt="Página 1">
     </div>
     <div class="slide">
@@ -49,32 +53,17 @@
     </div>
     <div class="slide">
       <a href="https://maps.google.com" target="_blank">
-        <img src="pagina3.jpg" alt="Mapa">
+        <img src="pagina3.jpg" alt="Google Maps">
       </a>
     </div>
     <div class="slide">
       <a href="https://wa.me/524921749044" target="_blank">
-        <img src="pagina4.jpg" alt="Confirmar WhatsApp">
+        <img src="pagina4.jpg" alt="WhatsApp">
       </a>
     </div>
   </div>
 
-  <script>
-    let slides = document.querySelectorAll('.slide');
-    let current = 0;
-
-    function showSlide(index) {
-      slides.forEach((slide, i) => {
-        slide.classList.toggle('active', i === index);
-      });
-    }
-
-    setInterval(() => {
-      current = (current + 1) % slides.length;
-      showSlide(current);
-    }, 4000); // Cambia cada 4 segundos
-  </script>
-
 </body>
 </html>
+
 
